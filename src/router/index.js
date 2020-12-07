@@ -1,22 +1,20 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import {
+  createRouter,
+  createWebHashHistory,
+} from 'vue-router';
+
 import Config from "../views/Config";
 import Upload from "../views/Upload";
 import Management from "../views/Management";
 import Help from "../views/Help";
 
-// 阻止重复点击同一路由时的报错
-const originalPush = VueRouter.prototype.push;
-VueRouter.prototype.push = function push(location) {
+const originalPush = createRouter.prototype.push;
+createRouter.prototype.push = function push(location) {
   return originalPush.call(this, location).catch(err => err)
 }
-
 const titleSuffix = ' | PicX 图床神器，免费、稳定、高效。'
 
-Vue.use(VueRouter)
-
-const routes = [
-  {
+const routes = [{
     path: '/',
     name: 'Index',
     redirect: {
@@ -56,17 +54,16 @@ const routes = [
     }
   },
   {
-    path: '*',
-    redirect: {
-      name: 'Upload'
-    }
-  },
+    path: '/:catchAll(.*)',
+    redirect: 'Upload',
+  }
 ]
 
-const router = new VueRouter({
+const router = new createRouter({
+  // vue-router v4
+  history: createWebHashHistory(''),
   routes
 })
-
 router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title

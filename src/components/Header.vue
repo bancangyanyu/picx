@@ -2,117 +2,118 @@
   <header class="header">
     <div class="brand" @click="$router.push('/')">
       <div class="logo">
-        <img :src="logoImage" alt="PicX"/>
+        <img :src="logoImage" alt="PicX" />
       </div>
-      <span class="name">
-        PicX
-      </span>
+      <span class="name"> PicX </span>
       <div class="github-stars">
-        <el-tooltip effect="light"
-                    content="点个Star支持一下吧 (*￣︶￣)"
-                    placement="bottom"
+        <el-tooltip
+          effect="light"
+          content="点个Star支持一下吧 (*￣︶￣)"
+          placement="bottom"
         >
-          <img alt="PicX stars"
-               src="https://img.shields.io/github/stars/XPoet/picx?style=social"
-               @click="goGitHubRepo"
-          >
+          <img
+            alt="PicX stars"
+            src="https://img.shields.io/github/stars/XPoet/picx?style=social"
+            @click="goGitHubRepo"
+          />
         </el-tooltip>
       </div>
     </div>
 
     <div class="user-info" @click="onUserInfoClick">
-
       <div class="username">
         {{ userConfigInfo.owner ? userConfigInfo.owner : defaultUsername }}
       </div>
 
-      <el-dropdown trigger="click"
-                   @command="handleCommand"
-      >
+      <el-dropdown trigger="click" @command="handleCommand">
         <span class="el-dropdown-link">
           <span class="avatar">
             <i class="el-icon-user-solid" v-if="!userConfigInfo.avatarUrl"></i>
-            <img :src="userConfigInfo.avatarUrl"
-                 :alt="userConfigInfo.owner"
-                 v-if="userConfigInfo.avatarUrl"
+            <img
+              :src="userConfigInfo.avatarUrl"
+              :alt="userConfigInfo.owner"
+              v-if="userConfigInfo.avatarUrl"
             />
           </span>
         </span>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item
-            v-if="userConfigInfo.loggingStatus"
-            command="logout"
-          >退出登录
-          </el-dropdown-item>
-        </el-dropdown-menu>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item
+              v-if="userConfigInfo.loggingStatus"
+              command="logout"
+              >退出登录
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
       </el-dropdown>
     </div>
   </header>
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   name: "Header",
 
   data() {
     return {
-      logoImage: require('@/assets/images/logo.png'),
-      defaultUsername: '未登录',
-    }
+      logoImage: require("@/assets/images/logo.png"),
+      defaultUsername: "未登录",
+    };
   },
 
   computed: {
     ...mapGetters({
-      userConfigInfo: 'getUserConfigInfo'
+      userConfigInfo: "getUserConfigInfo",
     }),
   },
 
-  mounted() {
-  },
+  mounted() {},
 
   methods: {
     onUserInfoClick() {
-      if (!this.userConfigInfo.loggingStatus && this.$router.currentRoute.path !== '/config') {
-        this.$router.push('/config')
+      if (
+        !this.userConfigInfo.loggingStatus &&
+        this.$router.currentRoute.path !== "/config"
+      ) {
+        this.$router.push("/config");
       }
     },
 
     handleCommand(command) {
       switch (command) {
-        case 'upload':
-          this.$router.push('/')
+        case "upload":
+          this.$router.push("/");
           break;
 
-        case 'config':
-          this.$router.push('config')
+        case "config":
+          this.$router.push("config");
           break;
 
-        case 'management':
-          this.$router.push('management')
+        case "management":
+          this.$router.push("management");
           break;
 
-        case 'logout':
-          this.logout()
+        case "logout":
+          this.logout();
           break;
       }
     },
 
     logout() {
-      this.$router.push('config')
-      this.$store.dispatch('LOGOUT')
+      this.$router.push("config");
+      this.$store.dispatch("LOGOUT");
     },
 
     goGitHubRepo() {
-      window.open('https://github.com/XPoet/picx');
-    }
-  }
-}
+      window.open("https://github.com/bancangyanyu/picx");
+    },
+  },
+};
 </script>
 
 <style scoped lang="scss">
-
 @import "src/style";
 
 .header {
@@ -182,8 +183,6 @@ export default {
         border-radius: 50%;
       }
     }
-
   }
-
 }
 </style>

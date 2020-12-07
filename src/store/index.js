@@ -1,9 +1,7 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import { createStore } from 'vuex'
 import {PICX_CONFIG, PICX_MANAGEMENT, PICX_UPLOADED} from "../common/model/localStorage";
 import cleanObject from "../common/utils/cleanObject";
 
-Vue.use(Vuex)
 
 const initUserConfigInfo = () => {
   let config = localStorage.getItem(PICX_CONFIG)
@@ -35,7 +33,7 @@ const initUploadedImageList = () => {
   return imageList ? JSON.parse(imageList) : []
 }
 
-export default new Vuex.Store({
+export default createStore({
   state: {
     userConfigInfo: initUserConfigInfo(),
     dirImageList: initDirImageList(),

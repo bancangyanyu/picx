@@ -1,20 +1,24 @@
-import Vue from 'vue'
+import {createApp} from 'vue';
 import App from './App.vue'
 import router from './router'
 import store from './store'
 import './style.scss'
-import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-chalk/index.css'
+import ElementPlus from 'element-plus';
+import 'element-plus/lib/theme-chalk/index.css';
 import Axios from "axios"
 import './axios'
 
-Vue.use(ElementUI);
-Vue.prototype.$axios = Axios
+// Vue.config.productionTip = false
+const app = createApp({
+  ...App,
+});
 
-Vue.config.productionTip = false
+app.config.globalProperties.$axios = Axios
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+app.use(ElementPlus)
+app.use(router);
+app.use(store); 
+router.isReady().then(() => app.mount('#app'))
+ 
+
+ 

@@ -1,4 +1,4 @@
-import ElementUI from 'element-ui'
+import ElementPlus from 'element-plus';
 import { isImage } from "./fileHandleHelper";
 
 function toPreviewer(dataUrl, fileName, cb) {
@@ -34,7 +34,7 @@ function chooseImg(file, cb, maxsize = 0) {
   }
 
   if (!isImage(file.type)) {
-    ElementUI.Message.error('该文件不是图片格式！')
+    ElementPlus.Message.error('该文件不是图片格式！')
     return
   }
 
