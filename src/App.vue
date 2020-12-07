@@ -2,14 +2,14 @@
   <div id="layout-container">
     <div class="app-container" @click="changeUploadAreaActive">
       <div class="app-header-container">
-        <Header/>
+        <Header />
       </div>
       <div class="app-content-container">
         <div class="left-side-content">
-          <LeftSide/>
+          <LeftSide />
         </div>
         <div class="main-content">
-          <router-view/>
+          <router-view />
         </div>
       </div>
     </div>
@@ -18,11 +18,10 @@
 </template>
 
 <script>
-
 import Header from "./components/Header";
 import LeftSide from "./components/LeftSide";
 import ImageViewer from "./components/ImageViewer";
-import {mapGetters} from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -32,19 +31,21 @@ export default {
   },
   methods: {
     changeUploadAreaActive(e) {
-      this.$store.commit('CHANGE_UPLOAD_AREA_ACTIVE', e.target.classList.contains('active-upload'))
-    }
+      this.$store.commit(
+        "CHANGE_UPLOAD_AREA_ACTIVE",
+        e.target.classList.contains("active-upload")
+      );
+    },
   },
   computed: {
     ...mapGetters({
-      uploadAreaActive: 'getUploadAreaActive',
-    })
-  }
-}
+      uploadAreaActive: "getUploadAreaActive",
+    }),
+  },
+};
 </script>
 
 <style lang="scss">
-
 @import "src/style";
 
 #layout-container {
@@ -112,6 +113,5 @@ export default {
       }
     }
   }
-
 }
 </style>

@@ -1,8 +1,8 @@
 # PicX
 
-[![Author](https://img.shields.io/badge/author-XPoet-orange.svg)](https://github.com/XPoet)
-[![Release](https://img.shields.io/github/release/XPoet/picx.svg)](https://github.com/XPoet/picx/releases)
-[![License](https://img.shields.io/github/license/XPoet/picx.svg)](https://github.com/XPoet/picx/blob/master/LICENSE)
+本项目 fock 自 [XPoet](https://github.com/XPoet/picx) 
++ 升级为vue3
++ 升级为[el-plus](https://element-plus.gitee.io/)
 
 **一款基于 GitHub API 的免费、稳定且高效的图床管理神器。**
 
@@ -105,11 +105,8 @@
      ![](https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/PicX/image.6wfw84e4xlw0.png)
 
    - 可通过**选择图片**到上传区域进行上传。
-
+   
     选择图片完成后，会显示出图片详细信息，你可以**自定义修改图片名称**和**给图片加上哈希吗（确保图片名不重复）。**
-
-    ![](https://cdn.jsdelivr.net/gh/XPoet/image-hosting@master/PicX/image.3ibdn25rjfe0.png)
-
 <br>
 
 5. 图片上传成功后，即可复制图片外链。
